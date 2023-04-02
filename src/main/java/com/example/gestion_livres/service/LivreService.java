@@ -30,9 +30,7 @@ public class LivreService implements IDAO<Livre> {
         return livreRepository.findByDateEditionBetween(dateStart, dateEnd);
     }
 
-    /*public List<Livre> findBetweenDates(  Date datest,   Date datefi) {
-        return livreRepository.findBetweenDates(datest, datefi);
-    }*/
+
 
 
     public Livre findByIsbn(String isbn) {

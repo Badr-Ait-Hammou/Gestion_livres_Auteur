@@ -4,6 +4,7 @@ import com.example.gestion_livres.entity.Auteur;
 import com.example.gestion_livres.entity.Livre;
 import com.example.gestion_livres.service.AuteurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -14,14 +15,14 @@ import java.util.List;
 public class AuteurController {
 
 
-    @GetMapping("/auteur/{idAuteur}")
+    @GetMapping("/{idAuteur}")
     public List<Livre> findAllLivresByAut(@PathVariable int idAuteur) {
         return auteurService.findAll().stream().filter(auteur -> auteur.getId()==idAuteur).findFirst().orElse(null).getLivreList();
 
     }
 
     @GetMapping("/datenaissance/{dateNaissance}")
-    public List<Auteur> findByDateNaissance(@PathVariable Date dateNaissance) {
+    public List<Auteur> findByDateNaissance(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateNaissance) {
         return auteurService.findByDateNaissance(dateNaissance);
     }
 

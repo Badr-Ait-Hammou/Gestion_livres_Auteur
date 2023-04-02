@@ -3,6 +3,7 @@ package com.example.gestion_livres.controller;
 import com.example.gestion_livres.entity.Livre;
 import com.example.gestion_livres.service.LivreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -20,7 +21,7 @@ public class LivreController {
 
 
     @GetMapping("/datestart/{datest}/datefin/{datefi}")
-    public List<Livre> findByDateEditionBetween(@PathVariable Date dateStart,@PathVariable Date dateEnd) {
+    public List<Livre> findByDateEditionBetween(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateStart, @DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable Date dateEnd) {
         return livreService.findByDateEditionBetween(dateStart, dateEnd);
     }
 
@@ -57,8 +58,8 @@ public class LivreController {
         livreService.delete(id);
     }
 
-    @PostMapping("/livre/{idLivre}/auteur/{idAuteur}")
-    public void affecterLivre(@RequestBody int idLivre,@RequestBody int idAuteur) {
+    @PostMapping("/affecter/livre/{idLivre}/auteur/{idAuteur}")
+    public void affecterLivre(@PathVariable int idLivre,@PathVariable int idAuteur) {
         livreService.affecterLivre(idLivre, idAuteur);
     }
 
