@@ -2,7 +2,6 @@ package com.example.gestion_livres.service;
 
 import com.example.gestion_livres.dao.IDAO;
 import com.example.gestion_livres.entity.Auteur;
-import com.example.gestion_livres.entity.Livre;
 import com.example.gestion_livres.repository.AuteurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -28,9 +27,6 @@ public class AuteurService implements IDAO<Auteur> {
     public Auteur findByCin(String cin) {
         return auteurRepository.findByCin(cin);
     }
-
-
-
 
     @Override
     public Auteur save(Auteur auteur) {

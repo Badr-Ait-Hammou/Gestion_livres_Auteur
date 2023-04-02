@@ -14,6 +14,8 @@ import java.util.List;
 @RequestMapping("api/auteur")
 public class AuteurController {
 
+    @Autowired
+    private AuteurService auteurService;
 
     @GetMapping("/{idAuteur}")
     public List<Livre> findAllLivresByAut(@PathVariable int idAuteur) {
@@ -25,9 +27,6 @@ public class AuteurController {
     public List<Auteur> findByDateNaissance(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateNaissance) {
         return auteurService.findByDateNaissance(dateNaissance);
     }
-
-    @Autowired
-    private AuteurService auteurService;
 
 
 

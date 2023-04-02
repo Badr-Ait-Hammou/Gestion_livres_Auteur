@@ -13,7 +13,6 @@ import java.util.List;
 public interface LivreRepository extends JpaRepository<Livre,Integer> {
   Livre findById(int id);
   List<Livre> findByDateEditionBetween(Date dateStart,Date dateEnd);
-  //List<Livre> findBetweenDates(Date datest, Date datefi);
   Livre findByIsbn(String isbn);
 
 

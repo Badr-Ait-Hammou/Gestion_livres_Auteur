@@ -20,8 +20,8 @@ public class LivreController {
     private LivreService livreService;
 
 
-    @GetMapping("/datestart/{datest}/datefin/{datefi}")
-    public List<Livre> findByDateEditionBetween(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateStart, @DateTimeFormat(pattern = "yyyy-MM-dd") @PathVariable Date dateEnd) {
+    @GetMapping("/datestart/{dateStart}/datefin/{dateEnd}")
+    public List<Livre> findByDateEditionBetween(@PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateStart,@PathVariable  @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateEnd) {
         return livreService.findByDateEditionBetween(dateStart, dateEnd);
     }
 
