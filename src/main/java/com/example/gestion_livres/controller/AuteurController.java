@@ -1,6 +1,7 @@
 package com.example.gestion_livres.controller;
 
 import com.example.gestion_livres.entity.Auteur;
+import com.example.gestion_livres.entity.Livre;
 import com.example.gestion_livres.service.AuteurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,13 +13,23 @@ import java.util.List;
 @RequestMapping("api/auteur")
 public class AuteurController {
 
+
+    @GetMapping("/auteur/{idAuteur}")
+    public List<Livre> findAllLivresByAut(@PathVariable int idAuteur) {
+        return auteurService.findAll().stream().filter(auteur -> auteur.getId()==idAuteur).findFirst().orElse(null).getLivreList();
+
+    }
+
+    @GetMapping("/datenaissance/{dateNaissance}")
+    public List<Auteur> findByDateNaissance(@PathVariable Date dateNaissance) {
+        return auteurService.findByDateNaissance(dateNaissance);
+    }
+
     @Autowired
     private AuteurService auteurService;
 
-    @GetMapping("/datenaissance/{dateNaissance}")
-    public List<Auteur> findByDateNai(@PathVariable Date dateNaissance) {
-        return auteurService.findByDateNai(dateNaissance);
-    }
+
+
 
     @GetMapping("/cin/{cin}")
     public Auteur findByCin(@PathVariable String cin) {

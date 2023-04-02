@@ -2,6 +2,7 @@ package com.example.gestion_livres.service;
 
 import com.example.gestion_livres.dao.IDAO;
 import com.example.gestion_livres.entity.Auteur;
+import com.example.gestion_livres.entity.Livre;
 import com.example.gestion_livres.repository.AuteurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -13,17 +14,21 @@ import java.util.List;
 @Service
 public class AuteurService implements IDAO<Auteur> {
 
+
+    public List<Auteur> findByDateNaissance(Date dateNaissance) {
+        return auteurRepository.findByDateNaissance(dateNaissance);
+    }
+
     @Autowired
     private AuteurRepository auteurRepository;
 
 
-    public List<Auteur> findByDateNai(Date dateNaissance) {
-        return auteurRepository.findByDateNai(dateNaissance);
-    }
+
 
     public Auteur findByCin(String cin) {
         return auteurRepository.findByCin(cin);
     }
+
 
 
 

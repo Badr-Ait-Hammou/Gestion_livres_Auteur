@@ -17,16 +17,22 @@ import java.util.List;
 
 @Service
 public class LivreService implements IDAO<Livre> {
+
+
+
     @Autowired
     private LivreRepository livreRepository;
 
     @Autowired
     private AuteurRepository auteurRepository;
 
-
-    public List<Livre> findBetweenDates(  Date datest,   Date datefi) {
-        return livreRepository.findBetweenDates(datest, datefi);
+    public List<Livre> findByDateEditionBetween(Date dateStart, Date dateEnd) {
+        return livreRepository.findByDateEditionBetween(dateStart, dateEnd);
     }
+
+    /*public List<Livre> findBetweenDates(  Date datest,   Date datefi) {
+        return livreRepository.findBetweenDates(datest, datefi);
+    }*/
 
 
     public Livre findByIsbn(String isbn) {
@@ -53,7 +59,7 @@ public class LivreService implements IDAO<Livre> {
 
     public void update(Integer id, Livre livreinfo) {
         Livre  livre=livreRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("livre not found with id " + id));
-        livre.setIdbn(livreinfo.getIdbn());
+        livre.setIsbn(livreinfo.getIsbn());
         livre.setDateEdition(livreinfo.getDateEdition());
         livre.setTitre(livreinfo.getTitre());
         livreRepository.save(livre);
