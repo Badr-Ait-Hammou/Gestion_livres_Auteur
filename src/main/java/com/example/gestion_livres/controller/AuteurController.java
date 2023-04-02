@@ -37,8 +37,8 @@ public class AuteurController {
     }
 
     @PostMapping("/save")
-    public Auteur save(@RequestBody Auteur auteur) {
-        return auteurService.save(auteur);
+    public void save(@RequestBody Auteur auteur) {
+         auteurService.save(auteur);
     }
 
     @GetMapping("/")

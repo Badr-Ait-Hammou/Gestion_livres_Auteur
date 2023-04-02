@@ -17,16 +17,14 @@ public class LivreController {
 
     @Autowired
     private LivreService livreService;
+
+
     @GetMapping("/datestart/{datest}/datefin/{datefi}")
     public List<Livre> findByDateEditionBetween(@PathVariable Date dateStart,@PathVariable Date dateEnd) {
         return livreService.findByDateEditionBetween(dateStart, dateEnd);
     }
 
- /*   @GetMapping("/datestart/{datest}/datefin/{datefi}")
-    public List<Livre> findBetweenDates(@PathVariable Date datest,@PathVariable Date datefi) {
-        return livreService.findBetweenDates(datest, datefi);
-    }
-*/
+
     @GetMapping("/isbn/{isbn}")
     public Livre findByIsbn(@PathVariable String isbn) {
         return livreService.findByIsbn(isbn);
@@ -35,8 +33,8 @@ public class LivreController {
 
 
     @PostMapping("/save")
-    public Livre save(@RequestBody Livre livre) {
-        return livreService.save(livre);
+    public void save(@RequestBody Livre livre) {
+         livreService.save(livre);
     }
 
     @GetMapping("/")
